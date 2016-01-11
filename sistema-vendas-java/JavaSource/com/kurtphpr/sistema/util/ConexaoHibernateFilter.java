@@ -11,8 +11,6 @@ import javax.servlet.ServletResponse;
 
 import org.hibernate.SessionFactory;
 
-import com.kurtphpr.sistema.vendas.HibernateUtil;
-
 public class ConexaoHibernateFilter implements Filter {
 
 	private SessionFactory sf;

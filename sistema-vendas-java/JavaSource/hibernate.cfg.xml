@@ -9,6 +9,7 @@
   <property name="hibernate.connection.password">root</property>
   <property name="hibernate.dialect">org.hibernate.dialect.MySQLDialect</property>
   <property name="hibernate.hbm2ddl.auto">update</property>
+  <property name="hibernate.current_session_context_class">thread</property>
   <mapping class="com.kurtphpr.sistema.cliente.Cliente"/>
   <mapping class="com.kurtphpr.sistema.produto.Produto"/>
   <mapping class="com.kurtphpr.sistema.venda.Venda"/>
