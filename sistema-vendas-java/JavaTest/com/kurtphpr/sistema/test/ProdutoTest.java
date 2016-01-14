@@ -3,10 +3,13 @@ package com.kurtphpr.sistema.test;
 import static org.junit.Assert.*;
 
 import java.util.Date;
+import java.util.List;
 
+import org.hibernate.Criteria;
 import org.hibernate.Query;
 import org.hibernate.Session;
 import org.hibernate.Transaction;
+import org.junit.After;
 import org.junit.AfterClass;
 import org.junit.Before;
 import org.junit.BeforeClass;
@@ -63,17 +66,71 @@ public class ProdutoTest {
 				
 	}
 		
+	@After
+	public void limpaBanco() {
+		
+		Criteria lista = sessao.createCriteria(Produto.class);
+		
+		@SuppressWarnings("unchecked")
+		List<Produto> produtos = lista.list();
+		
+		for (Produto produto: produtos) {
+			sessao.delete(produto);
+		}
+		
+	}
+	
 	@Test
 	public void salvarProdutoTest() {
 		
-		String sql = "FROM Produto p WHERE p.descricao like :descricao";
-		Query consulta = sessao.createQuery(sql);
-		consulta.setString("descricao", "%Re%");
+		Query consulta = pesquisar("Re");
 		Produto produtoPesquisado = (Produto) consulta.uniqueResult();
-		
 		assertEquals("lote2", produtoPesquisado.getUnidade());
 				
 	}
+	
+	@Test
+	public void listaProdutoTest() {
 		
+		Criteria lista = sessao.createCriteria(Produto.class);
+		
+		@SuppressWarnings("unchecked")
+		List<Produto> produtos = lista.list();
+		
+		assertEquals(5, produtos.size());
+		
+	}
+	
+	@Test
+	public void excluirProdutoTest() {
+		
+		Query consulta = pesquisar("Papel");
+		Produto produtoDeletado = (Produto) consulta.uniqueResult();
+		sessao.delete(produtoDeletado);
+		
+		produtoDeletado = (Produto) consulta.uniqueResult();
+		assertNull(produtoDeletado);
+				
+	}
+	
+	@Test
+	public void alteracaoProdutoTest() {
+		
+		Query consulta = pesquisar("Livro");
+		Produto produtoAlterado = (Produto) consulta.uniqueResult();
+		produtoAlterado.setEstoque(100);
+		sessao.update(produtoAlterado);
+		
+		produtoAlterado = (Produto) consulta.uniqueResult();
+		assertEquals(100, produtoAlterado.getEstoque().intValue());
+		
+	}
+
+	private Query pesquisar(String parametro) {
+		String sql = "FROM Produto p WHERE p.descricao like :descricao";
+		Query consulta = sessao.createQuery(sql);
+		consulta.setString("descricao", "%"+parametro+"%");
+		return consulta;
+	}
 	
 }
