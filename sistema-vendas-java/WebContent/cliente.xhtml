@@ -10,7 +10,7 @@
 	 -->
 	<ui:composition template="/templates/template.xhtml">
 			<ui:define name="pageTitle">Cliente</ui:define>
-			<ui:define name="pageHeader">Cadastro de Clientes</ui:define>
+			<ui:define name="pageHeader"><h2>Cadastro de Clientes</h2></ui:define>
 			<ui:define name="body">
 				<h:form id="edicao">
 					<h:messages />
@@ -55,23 +55,27 @@
 							#{cliente.cpf}
 						</h:column>
 						
+						<!--
 						<h:column>
 							<f:facet name="header">Cadastro</f:facet>
 							<h:outputText value="#{cliente.dataCadastro}" >
 								<f:convertDateTime dateStyle="medium"/>
 							</h:outputText>
 						</h:column>
+						-->
 						
 						<h:column>
 							<f:facet name="header">E-mail</f:facet>
 							#{cliente.email}
 						</h:column>
 						
+						<!-- 
 						<h:column>
 							<f:facet name="header">Endereço</f:facet>
 							#{cliente.endereco}
 						</h:column>
-						
+						 -->
+						 
 						<h:column>
 							<f:facet name="header">Renda</f:facet>
 							<h:outputText value="#{cliente.renda}" >
