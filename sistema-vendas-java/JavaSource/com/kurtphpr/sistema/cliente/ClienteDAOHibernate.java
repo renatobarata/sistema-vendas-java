@@ -28,5 +28,10 @@ public class ClienteDAOHibernate implements ClienteDAO {
 		Criteria lista = sessao.createCriteria(Cliente.class);
 		return lista.list();
 	}
+
+	@Override
+	public void excluir(Cliente cliente) {
+		this.sessao.delete(cliente);
+	}
 	
 }

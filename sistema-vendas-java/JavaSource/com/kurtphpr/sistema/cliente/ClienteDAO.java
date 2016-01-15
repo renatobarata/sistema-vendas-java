@@ -7,5 +7,7 @@ public interface ClienteDAO {
 	public void salvar(Cliente cliente);
 
 	public List<Cliente> listar();
+
+	public void excluir(Cliente cliente);
 	
 }

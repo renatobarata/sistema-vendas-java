@@ -15,8 +15,8 @@ a:active { color: red; }
 h1, h2, h3, h4, h5, h6 { margin: 0 0 .5em; }
 
 h2 {
-	color: #000000;
-	font: 190% georgia, times, "times new roman", serif;
+	color: #B52C07;
+	font: 140% georgia, times, "times new roman", serif;
 	}
 
 h2 a { text-decoration: none; }
@@ -42,6 +42,7 @@ h3 {
 	height: 45px;
 	width: 100%;
 	position: relative;
+	font-size: 22px;
 	background: url(#{resource['imagens:testebanner.png']}) repeat 0 0;
 	border-bottom: 1px solid #fff;
 	}

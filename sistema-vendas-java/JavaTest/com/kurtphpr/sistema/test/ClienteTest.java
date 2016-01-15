@@ -2,11 +2,14 @@ package com.kurtphpr.sistema.test;
 
 import static org.junit.Assert.*;
 
+import java.util.Date;
 import java.util.List;
 
 import org.hibernate.Session;
 import org.hibernate.Transaction;
+import org.junit.After;
 import org.junit.AfterClass;
+import org.junit.Before;
 import org.junit.BeforeClass;
 import org.junit.Test;
 
@@ -45,6 +48,32 @@ public class ClienteTest {
 		
 	}
 	
+	@Before
+	public void setup() {
+		
+		Cliente c2 = new Cliente("21244634700", "teste2@mail.com", "Rua 2", "Cliente 2", new Date(), 2000);
+		Cliente c3 = new Cliente("21244634700", "teste3@mail.com", "Rua 3", "Cliente 3", new Date(), 3000);
+		Cliente c4 = new Cliente("21244634700", "teste4@mail.com", "Rua 4", "Cliente 4", new Date(), 4000);
+		
+		ClienteRN clienteRN = new ClienteRN();
+		clienteRN.salvar(c2);
+		clienteRN.salvar(c3);
+		clienteRN.salvar(c4);
+		
+	}
+	
+	@After
+	public void limpaBanco() {
+		
+		ClienteRN clienteRN = new ClienteRN();
+		List<Cliente> lista = clienteRN.listar();
+		
+		for (Cliente cliente : lista) {
+			clienteRN.excluir(cliente);
+		}
+		
+	}
+	
 	@Test
 	public void salvarTest() {
 		
@@ -67,6 +96,18 @@ public class ClienteTest {
 		ClienteRN clienteRN = new ClienteRN();
 		List<Cliente> lista = clienteRN.listar();
 		assertEquals(3, lista.size());
+		
+	}
+	
+	@Test
+	public void excluirTest() {
+		
+		ClienteRN clienteRN = new ClienteRN();
+		List<Cliente> lista = clienteRN.listar();
+		Cliente clienteExcluido = lista.get(0);
+		clienteRN.excluir(clienteExcluido);
+		lista = clienteRN.listar();
+		assertEquals(2, lista.size());
 		
 	}
 	
