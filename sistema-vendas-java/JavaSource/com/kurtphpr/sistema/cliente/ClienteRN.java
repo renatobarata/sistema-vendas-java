@@ -25,5 +25,15 @@ public class ClienteRN {
 		this.clienteDAO.excluir(cliente);
 		
 	}
+
+	public Cliente pesquisar(String cliente) {
+		return this.clienteDAO.pesquisar(cliente);
+	}
+
+	
+	public void alterar(Cliente cliente) {
+		this.clienteDAO.alterar(cliente);
+		
+	}
 	
 }

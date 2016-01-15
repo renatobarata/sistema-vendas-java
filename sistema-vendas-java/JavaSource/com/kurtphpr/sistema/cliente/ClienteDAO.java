@@ -9,5 +9,9 @@ public interface ClienteDAO {
 	public List<Cliente> listar();
 
 	public void excluir(Cliente cliente);
+
+	public Cliente pesquisar(String string);
+
+	public void alterar(Cliente cliente);
 	
 }
