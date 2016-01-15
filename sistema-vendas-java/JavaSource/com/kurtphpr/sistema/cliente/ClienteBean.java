@@ -19,10 +19,16 @@ public class ClienteBean {
 	public void salvar() {
 		ClienteRN clienteRN = new ClienteRN();
 		clienteSelecionado.setDataCadastro(new Date());
-		clienteRN.salvar(clienteSelecionado);
-		FacesMessage faces = new FacesMessage("Cliente cadastrado com sucesso!");
-		FacesContext contexto = FacesContext.getCurrentInstance();
-		contexto.addMessage(null, faces);
+		
+		if(this.clienteSelecionado.getId() != null && this.clienteSelecionado.getId() != 0) {
+			clienteRN.alterar(this.clienteSelecionado);
+		} else {
+			clienteRN.salvar(clienteSelecionado);
+			FacesMessage faces = new FacesMessage("Cliente cadastrado com sucesso!");
+			FacesContext contexto = FacesContext.getCurrentInstance();
+			contexto.addMessage(null, faces);
+		}
+		this.lista = null;
 	}
 
 	public Cliente getClienteSelecionado() {
@@ -45,6 +51,10 @@ public class ClienteBean {
 		ClienteRN clienteRN = new ClienteRN();
 		clienteRN.excluir(clienteSelecionado);
 		this.lista = null; // Carrega a lista vazia para atualizar a lista novamente
+	}
+	
+	public void novo() {
+		this.clienteSelecionado = new Cliente();
 	}
 	
 }

@@ -14,10 +14,12 @@
 			<ui:define name="body">
 				<h:form id="edicao">
 					<h:messages />
+					<h:inputHidden value="#{clienteBean.clienteSelecionado.id}" />
+					
 					<h:panelGrid columns="2">
 					
 						<h:outputLabel value="Nome:" />
-						<h:inputText value="#{clienteBean.clienteSelecionado.nome}" />
+						<h:inputText id="Nome" value="#{clienteBean.clienteSelecionado.nome}" required="true" />
 					
 						<h:outputLabel value="CPF:" />
 						<h:inputText value="#{clienteBean.clienteSelecionado.cpf}" >
@@ -38,6 +40,7 @@
 					</h:panelGrid>
 					
 					<h:commandButton action="#{clienteBean.salvar()}" value="Salvar" />
+					<h:commandButton action="#{clienteBean.novo()}" value="Novo Cliente" />
 					
 				</h:form>
 				<h:form id="lista">
@@ -87,6 +90,10 @@
 							<f:facet name="header">Ações</f:facet>
 							<h:commandLink action="#{clienteBean.excluir}" onclick="if(!confirm('Deseja realmente excluir o cliente #{cliente.nome}?')) return false;">
 								<h:graphicImage library="imagens" name="remove-icon.png" />
+								<f:setPropertyActionListener value="#{cliente}" target="#{clienteBean.clienteSelecionado}"/>
+							</h:commandLink>
+							<h:commandLink>
+								<h:graphicImage library="imagens" name="wrench-icon.png" />
 								<f:setPropertyActionListener value="#{cliente}" target="#{clienteBean.clienteSelecionado}"/>
 							</h:commandLink>
 						</h:column>
