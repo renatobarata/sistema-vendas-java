@@ -40,5 +40,11 @@ public class ClienteBean {
 		}
 		return lista;
 	}
-		
+	
+	public void excluir() {
+		ClienteRN clienteRN = new ClienteRN();
+		clienteRN.excluir(clienteSelecionado);
+		this.lista = null; // Carrega a lista vazia para atualizar a lista novamente
+	}
+	
 }
