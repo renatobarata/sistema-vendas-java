@@ -11,5 +11,7 @@ public interface ProdutoDAO {
 	public void excluir(Produto produto);
 
 	public Produto pesquisar(String produto);
+
+	public void alterar(Produto produto);
 	
 }

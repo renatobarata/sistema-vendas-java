@@ -125,25 +125,23 @@ public class ProdutoTest {
 		ProdutoRN produtoRN = new ProdutoRN();
 		Produto produtoPesquisado = produtoRN.pesquisar("Re");
 		
-		assertEquals(30.0f, produtoPesquisado.getEstoque(), 0.0002);
+		assertEquals(30.0f, produtoPesquisado.getEstoque(), 0.0001);
 		
 	}
 	
-	
-	/*
 	@Test
 	public void alterarTest() {
 		
 		ProdutoRN produtoRN = new ProdutoRN();
 		Produto produtoPesquisado = produtoRN.pesquisar("Re");
-		assertEquals(30, produtoPesquisado.getEstoque());
+		assertEquals(30.0f, produtoPesquisado.getEstoque(), 0.0001);
 		
 		produtoPesquisado.setEstoque(40);
 		produtoRN.alterar(produtoPesquisado);
 		Produto produtoAlterado = produtoRN.pesquisar("Re");
-		assertEquals(40, produtoAlterado.getEstoque());
+		assertEquals(40.0f, produtoAlterado.getEstoque(), 0.0001);
 		
 	}
-	*/
+	
 	
 }

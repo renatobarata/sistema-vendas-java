@@ -16,8 +16,8 @@ public class ProdutoRN {
 		this.produtoDAO.salvar(produto);
 	}
 
-	public void alterar(Produto produtoSelecionado) {
-		// TODO Auto-generated method stub
+	public void alterar(Produto produto) {
+		this.produtoDAO.alterar(produto);
 		
 	}
 

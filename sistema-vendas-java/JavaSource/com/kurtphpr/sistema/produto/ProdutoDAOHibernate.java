@@ -42,5 +42,11 @@ public class ProdutoDAOHibernate implements ProdutoDAO {
 		consultaDescricao.setString("descricao", "%"+string+"%");
 		return (Produto) consultaDescricao.uniqueResult();
 	}
+
+	@Override
+	public void alterar(Produto produto) {
+		this.sessao.update(produto);
+		
+	}
 	
 }
