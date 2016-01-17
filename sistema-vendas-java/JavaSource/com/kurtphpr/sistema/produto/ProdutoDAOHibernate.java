@@ -22,10 +22,17 @@ public class ProdutoDAOHibernate implements ProdutoDAO {
 		this.sessao = sessao;
 	}
 
+	@SuppressWarnings("unchecked")
 	@Override
 	public List<Produto> listar() {
 		Criteria lista = sessao.createCriteria(Produto.class);
 		return lista.list();
+	}
+
+	@Override
+	public void excluir(Produto produto) {
+		this.sessao.delete(produto);
+		
 	}
 	
 }

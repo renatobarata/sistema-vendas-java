@@ -7,7 +7,9 @@ import java.util.List;
 
 import org.hibernate.Session;
 import org.hibernate.Transaction;
+import org.junit.After;
 import org.junit.AfterClass;
+import org.junit.Before;
 import org.junit.BeforeClass;
 import org.junit.Test;
 
@@ -46,7 +48,7 @@ public class ProdutoTest {
 		
 	}
 	
-	/*
+	
 	@Before
 	public void setup() {
 		
@@ -64,9 +66,7 @@ public class ProdutoTest {
 		produtoRN.salvar(p6);
 		
 	}
-	*/
-	
-	/*
+		
 	@After
 	public void limpaBanco() {
 		
@@ -78,8 +78,7 @@ public class ProdutoTest {
 		}
 		
 	}
-	*/
-	
+		
 	@Test
 	public void salvarTest() {
 		
@@ -101,33 +100,33 @@ public class ProdutoTest {
 		
 		ProdutoRN produtoRN = new ProdutoRN();
 		List<Produto> lista = produtoRN.listar();
-		assertEquals(3, lista.size());
+		assertEquals(5, lista.size());
 		
 	}
 	
 	
-	/*
+	
 	@Test
 	public void excluirTest() {
 		
-		ClienteRN clienteRN = new ClienteRN();
-		List<Cliente> lista = clienteRN.listar();
-		Cliente clienteExcluido = lista.get(0);
-		clienteRN.excluir(clienteExcluido);
-		lista = clienteRN.listar();
-		assertEquals(2, lista.size());
+		ProdutoRN produtoRN = new ProdutoRN();
+		List<Produto> lista = produtoRN.listar();
+		Produto produtoExcluido = lista.get(0);
+		produtoRN.excluir(produtoExcluido);
+		lista = produtoRN.listar();
+		assertEquals(4, lista.size());
 		
 	}
-	*/
+	
 	
 	/*
 	@Test
 	public void pesquisarTest() {
 		
-		ClienteRN clienteRN = new ClienteRN();
-		Cliente clientePesquisado = clienteRN.pesquisar("te 2");
+		ProdutoRN produtoRN = new ProdutoRN();
+		Produto produtoPesquisado = produtoRN.pesquisar("Re");
 		
-		assertEquals("teste2@mail.com", clientePesquisado.getEmail());
+		assertEquals(30, clientePesquisado.getEstoque());
 		
 	}
 	*/
@@ -136,14 +135,14 @@ public class ProdutoTest {
 	@Test
 	public void alterarTest() {
 		
-		ClienteRN clienteRN = new ClienteRN();
-		Cliente clientePesquisado = clienteRN.pesquisar("te 2");
-		assertEquals("teste2@mail.com", clientePesquisado.getEmail());
+		ProdutoRN produtoRN = new ProdutoRN();
+		Produto produtoPesquisado = produtoRN.pesquisar("Re");
+		assertEquals(30, produtoPesquisado.getEstoque());
 		
-		clientePesquisado.setEndereco("Novo Endereço");
-		clienteRN.alterar(clientePesquisado);
-		Cliente clienteAlterado = clienteRN.pesquisar("te 2");
-		assertEquals("Novo Endereço", clienteAlterado.getEndereco());
+		produtoPesquisado.setEstoque(40);
+		produtoRN.alterar(produtoPesquisado);
+		Produto produtoAlterado = produtoRN.pesquisar("Re");
+		assertEquals(40, produtoAlterado.getEstoque());
 		
 	}
 	*/

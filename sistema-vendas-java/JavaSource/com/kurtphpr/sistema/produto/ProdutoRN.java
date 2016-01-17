@@ -24,6 +24,11 @@ public class ProdutoRN {
 	public List<Produto> listar() {
 		return this.produtoDAO.listar();
 	}
+
+	public void excluir(Produto produto) {
+		this.produtoDAO.excluir(produto);
+		
+	}
 	
 	
 
