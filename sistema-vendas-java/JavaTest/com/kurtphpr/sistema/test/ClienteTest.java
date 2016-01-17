@@ -112,7 +112,7 @@ public class ClienteTest {
 	}
 	
 	@Test
-	public void pesquisaTest() {
+	public void pesquisarTest() {
 		
 		ClienteRN clienteRN = new ClienteRN();
 		Cliente clientePesquisado = clienteRN.pesquisar("te 2");

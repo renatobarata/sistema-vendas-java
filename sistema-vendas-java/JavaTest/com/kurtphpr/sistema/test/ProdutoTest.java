@@ -5,17 +5,14 @@ import static org.junit.Assert.*;
 import java.util.Date;
 import java.util.List;
 
-import org.hibernate.Criteria;
-import org.hibernate.Query;
 import org.hibernate.Session;
 import org.hibernate.Transaction;
-import org.junit.After;
 import org.junit.AfterClass;
-import org.junit.Before;
 import org.junit.BeforeClass;
 import org.junit.Test;
 
 import com.kurtphpr.sistema.produto.Produto;
+import com.kurtphpr.sistema.produto.ProdutoRN;
 import com.kurtphpr.sistema.util.HibernateUtil;
 
 public class ProdutoTest {
@@ -49,88 +46,106 @@ public class ProdutoTest {
 		
 	}
 	
+	/*
 	@Before
 	public void setup() {
 		
-		Produto p1 = new Produto("lote", "Caderno", new Date(), 50, 7.0f);
-		Produto p2 = new Produto("lote2", "Regua", new Date(), 30, 2.5f);
-		Produto p3 = new Produto("fardo", "Papel", new Date(), 300, 1.5f);
-		Produto p4 = new Produto("edicao", "Livro", new Date(), 10, 30.0f);
-		Produto p5 = new Produto("caixa", "Caneta", new Date(), 90, 1.5f);
+		Produto p2 = new Produto("lote", "Caderno", new Date(), 50, 7.0f);
+		Produto p3 = new Produto("lote2", "Regua", new Date(), 30, 2.5f);
+		Produto p4 = new Produto("fardo", "Papel", new Date(), 300, 1.5f);
+		Produto p5 = new Produto("edicao", "Livro", new Date(), 10, 30.0f);
+		Produto p6 = new Produto("caixa", "Caneta", new Date(), 90, 1.5f);
 		
-		sessao.save(p1);
-		sessao.save(p2);
-		sessao.save(p3);
-		sessao.save(p4);
-		sessao.save(p5);
-				
+		ProdutoRN produtoRN = new ProdutoRN();
+		produtoRN.salvar(p2);
+		produtoRN.salvar(p3);
+		produtoRN.salvar(p4);
+		produtoRN.salvar(p5);
+		produtoRN.salvar(p6);
+		
 	}
-		
+	*/
+	
+	/*
 	@After
 	public void limpaBanco() {
 		
-		Criteria lista = sessao.createCriteria(Produto.class);
+		ProdutoRN produtoRN = new ProdutoRN();
+		List<Produto> lista = produtoRN.listar();
 		
-		@SuppressWarnings("unchecked")
-		List<Produto> produtos = lista.list();
-		
-		for (Produto produto: produtos) {
-			sessao.delete(produto);
+		for (Produto produto : lista) {
+			produtoRN.excluir(produto);
 		}
 		
 	}
+	*/
 	
 	@Test
-	public void salvarProdutoTest() {
+	public void salvarTest() {
 		
-		Query consulta = pesquisar("Re");
-		Produto produtoPesquisado = (Produto) consulta.uniqueResult();
-		assertEquals("lote2", produtoPesquisado.getUnidade());
-				
-	}
-	
-	@Test
-	public void listaProdutoTest() {
+		Produto p1 = new Produto();
+		p1.setUnidade("lote");
+		p1.setDescricao("Caderno");
+		p1.setDataCadastro(new Date());
+		p1.setEstoque(50);
+		p1.setValor(7.0f);
 		
-		Criteria lista = sessao.createCriteria(Produto.class);
-		
-		@SuppressWarnings("unchecked")
-		List<Produto> produtos = lista.list();
-		
-		assertEquals(5, produtos.size());
+		ProdutoRN produtoRN = new ProdutoRN();
+		produtoRN.salvar(p1);
+		assertEquals(true, true);
 		
 	}
 	
 	@Test
-	public void excluirProdutoTest() {
+	public void listarTest() {
 		
-		Query consulta = pesquisar("Papel");
-		Produto produtoDeletado = (Produto) consulta.uniqueResult();
-		sessao.delete(produtoDeletado);
+		ProdutoRN produtoRN = new ProdutoRN();
+		List<Produto> lista = produtoRN.listar();
+		assertEquals(3, lista.size());
 		
-		produtoDeletado = (Produto) consulta.uniqueResult();
-		assertNull(produtoDeletado);
-				
 	}
 	
+	
+	/*
 	@Test
-	public void alteracaoProdutoTest() {
+	public void excluirTest() {
 		
-		Query consulta = pesquisar("Livro");
-		Produto produtoAlterado = (Produto) consulta.uniqueResult();
-		produtoAlterado.setEstoque(100);
-		sessao.update(produtoAlterado);
-		
-		produtoAlterado = (Produto) consulta.uniqueResult();
-		assertEquals(100, produtoAlterado.getEstoque().intValue());
+		ClienteRN clienteRN = new ClienteRN();
+		List<Cliente> lista = clienteRN.listar();
+		Cliente clienteExcluido = lista.get(0);
+		clienteRN.excluir(clienteExcluido);
+		lista = clienteRN.listar();
+		assertEquals(2, lista.size());
 		
 	}
-
-	private Query pesquisar(String parametro) {
-		String sql = "FROM Produto p WHERE p.descricao like :descricao";
-		Query consulta = sessao.createQuery(sql);
-		consulta.setString("descricao", "%"+parametro+"%");
-		return consulta;
+	*/
+	
+	/*
+	@Test
+	public void pesquisarTest() {
+		
+		ClienteRN clienteRN = new ClienteRN();
+		Cliente clientePesquisado = clienteRN.pesquisar("te 2");
+		
+		assertEquals("teste2@mail.com", clientePesquisado.getEmail());
+		
 	}
+	*/
+	
+	/*
+	@Test
+	public void alterarTest() {
+		
+		ClienteRN clienteRN = new ClienteRN();
+		Cliente clientePesquisado = clienteRN.pesquisar("te 2");
+		assertEquals("teste2@mail.com", clientePesquisado.getEmail());
+		
+		clientePesquisado.setEndereco("Novo Endereço");
+		clienteRN.alterar(clientePesquisado);
+		Cliente clienteAlterado = clienteRN.pesquisar("te 2");
+		assertEquals("Novo Endereço", clienteAlterado.getEndereco());
+		
+	}
+	*/
 	
 }
