@@ -119,17 +119,16 @@ public class ProdutoTest {
 	}
 	
 	
-	/*
 	@Test
 	public void pesquisarTest() {
 		
 		ProdutoRN produtoRN = new ProdutoRN();
 		Produto produtoPesquisado = produtoRN.pesquisar("Re");
 		
-		assertEquals(30, clientePesquisado.getEstoque());
+		assertEquals(30.0f, produtoPesquisado.getEstoque(), 0.0002);
 		
 	}
-	*/
+	
 	
 	/*
 	@Test

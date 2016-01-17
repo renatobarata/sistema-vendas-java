@@ -3,6 +3,7 @@ package com.kurtphpr.sistema.produto;
 import java.util.List;
 
 import org.hibernate.Criteria;
+import org.hibernate.Query;
 import org.hibernate.Session;
 
 public class ProdutoDAOHibernate implements ProdutoDAO {
@@ -33,6 +34,13 @@ public class ProdutoDAOHibernate implements ProdutoDAO {
 	public void excluir(Produto produto) {
 		this.sessao.delete(produto);
 		
+	}
+
+	@Override
+	public Produto pesquisar(String string) {
+		Query consultaDescricao = this.sessao.createQuery("FROM Produto p WHERE p.descricao like :descricao");
+		consultaDescricao.setString("descricao", "%"+string+"%");
+		return (Produto) consultaDescricao.uniqueResult();
 	}
 	
 }

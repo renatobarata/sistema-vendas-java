@@ -29,6 +29,10 @@ public class ProdutoRN {
 		this.produtoDAO.excluir(produto);
 		
 	}
+
+	public Produto pesquisar(String produto) {
+		return this.produtoDAO.pesquisar(produto);
+	}
 	
 	
 

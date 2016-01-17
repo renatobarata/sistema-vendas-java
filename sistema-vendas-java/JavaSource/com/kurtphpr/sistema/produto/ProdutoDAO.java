@@ -9,5 +9,7 @@ public interface ProdutoDAO {
 	public List<Produto> listar();
 
 	public void excluir(Produto produto);
+
+	public Produto pesquisar(String produto);
 	
 }
