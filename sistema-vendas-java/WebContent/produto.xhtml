@@ -35,7 +35,7 @@
 					</h:panelGrid>
 					
 					<h:commandButton action="#{produtoBean.salvar()}" value="Salvar" />
-					<h:commandButton action="#{clienteBean.novo()}" value="Novo Produto" />
+					<h:commandButton action="#{produtoBean.novo()}" value="Novo Produto" />
 					
 				</h:form>
 				
@@ -75,7 +75,7 @@
 						
 						<h:column>
 							<f:facet name="header">Ações</f:facet>
-							<h:commandLink action="#{produtoBean.excluir}" onclick="if(!confirm('Deseja realmente excluir o produto #{produto.descricao}?')) return false;">
+							<h:commandLink action="#{produtoBean.excluir()}" onclick="if(!confirm('Deseja realmente excluir o produto #{produto.descricao}?')) return false;">
 								<h:graphicImage library="imagens" name="remove-icon.png" />
 								<f:setPropertyActionListener value="#{produto}" target="#{produtoBean.produtoSelecionado}"/>
 							</h:commandLink>

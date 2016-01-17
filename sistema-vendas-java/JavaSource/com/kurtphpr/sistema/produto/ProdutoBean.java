@@ -46,5 +46,15 @@ public class ProdutoBean {
 		}
 		return lista;
 	}
-			
+	
+	public void excluir() {
+		ProdutoRN produtoRN = new ProdutoRN();
+		produtoRN.excluir(produtoSelecionado);
+		this.lista = null; // Carrega a lista vazia para atualizar a lista novamente
+	}
+	
+	public void novo() {
+		this.produtoSelecionado = new Produto();
+	}
+	
 }
