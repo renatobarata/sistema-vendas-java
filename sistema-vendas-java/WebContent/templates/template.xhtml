@@ -18,12 +18,14 @@
 			</div>
 			
 			<div id="mainnav">
-				<ul>  			
-					<li><a href="#">Cadastro de Clientes</a></li>  			
-					<li><a href="#">Cadastro de Produtos</a></li>  			
-					<li><a href="#">Registro de Venda</a></li>  			
-					<li><a href="#">Sobre</a></li>  		
-				</ul>
+				<h:form>
+					<ul>  			
+						<li><h:commandLink action="cliente" value="Cadastro de Clientes" /></li>  			
+						<li><h:commandLink action="produto" value="Cadastro de Produtos" /></li>  			
+						<li><h:commandLink action="venda" value="Registro de Vendas" /></li>
+						<li><a href="#">Sobre</a></li>  		
+					</ul>
+				</h:form>
 			</div>
 
 			<div id="menu">
