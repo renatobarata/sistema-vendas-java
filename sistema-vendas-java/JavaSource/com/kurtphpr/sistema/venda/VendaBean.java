@@ -49,15 +49,21 @@ public class VendaBean {
 	public String finalizarVenda() {
 		if(!this.carrinhoCompras.isEmpty()) {
 			ArrayList<Venda> vendas = new ArrayList<Venda>();
-			for (Produto p : this.carrinhoCompras) {
+			VendaRN vendaRN = new VendaRN();
+			
+			for (Produto produto : this.carrinhoCompras) {
 				if(this.clienteSelecionado != null) {
-					vendas.add(new Venda(p, this.clienteSelecionado));
+					if(vendaRN.existeEstoque(produto)) {
+						vendas.add(new Venda(produto, this.clienteSelecionado));
+					}
+					
 				}
 			}
+			
 			for (Venda venda : vendas) {
-				VendaRN vendaRN = new VendaRN();
 				venda.setDataVenda(new Date());
 				vendaRN.registraVenda(venda);
+				vendaRN.reduzEstoqueProduto(venda.getProduto());
 			}
 		}
 		return null;
