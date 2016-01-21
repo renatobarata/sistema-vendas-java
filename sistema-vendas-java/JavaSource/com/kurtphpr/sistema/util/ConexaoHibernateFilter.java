@@ -17,14 +17,13 @@ public class ConexaoHibernateFilter implements Filter {
 		
 	@Override
 	public void destroy() {
-		// TODO Auto-generated method stub
-		
+				
 	}
 
 	@Override
 	public void doFilter(ServletRequest servletRequest, ServletResponse servletResponse, FilterChain filterChain)
 			throws IOException, ServletException {
-		// TODO Auto-generated method stub
+		
 		try {
 			this.sf.getCurrentSession().beginTransaction();
 			filterChain.doFilter(servletRequest, servletResponse);
@@ -36,21 +35,17 @@ public class ConexaoHibernateFilter implements Filter {
 					this.sf.getCurrentSession().getTransaction().rollback();
 				}
 			} catch (Throwable ex) {
-				// TODO: handle exception
 				ex.printStackTrace();
 			}
-			throw new ServletException();
+			throw new ServletException(e.getMessage());
 		}
 				
 	}
 
 	@Override
 	public void init(FilterConfig conf) throws ServletException {
-		// TODO Auto-generated method stub
 		this.sf = HibernateUtil.getSession();
 		
 	}
-
-	
 	
 }

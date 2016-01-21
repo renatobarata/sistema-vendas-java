@@ -30,7 +30,7 @@ public class ProdutoRN {
 		
 	}
 
-	public Produto pesquisar(String produto) {
+	public Produto pesquisarPorNome(String produto) {
 		return this.produtoDAO.pesquisar(produto);
 	}
 	

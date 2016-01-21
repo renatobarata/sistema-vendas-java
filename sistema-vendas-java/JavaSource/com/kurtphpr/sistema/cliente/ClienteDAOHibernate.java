@@ -46,5 +46,10 @@ public class ClienteDAOHibernate implements ClienteDAO {
 	public void alterar(Cliente cliente) {
 		this.sessao.update(cliente);
 	}
+
+	@Override
+	public Cliente pesquisarPorCodigo(Integer codigo) {
+		return (Cliente) this.sessao.get(Cliente.class, codigo);
+	}
 	
 }

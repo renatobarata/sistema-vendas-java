@@ -88,7 +88,7 @@ public class ProdutoTest extends TestHeranca {
 	public void pesquisarTest() {
 		
 		ProdutoRN produtoRN = new ProdutoRN();
-		Produto produtoPesquisado = produtoRN.pesquisar("Re");
+		Produto produtoPesquisado = produtoRN.pesquisarPorNome("Re");
 		
 		assertEquals(30.0f, produtoPesquisado.getEstoque(), 0.0001);
 		
@@ -98,12 +98,12 @@ public class ProdutoTest extends TestHeranca {
 	public void alterarTest() {
 		
 		ProdutoRN produtoRN = new ProdutoRN();
-		Produto produtoPesquisado = produtoRN.pesquisar("Re");
+		Produto produtoPesquisado = produtoRN.pesquisarPorNome("Re");
 		assertEquals(30.0f, produtoPesquisado.getEstoque(), 0.0001);
 		
 		produtoPesquisado.setEstoque(40);
 		produtoRN.alterar(produtoPesquisado);
-		Produto produtoAlterado = produtoRN.pesquisar("Re");
+		Produto produtoAlterado = produtoRN.pesquisarPorNome("Re");
 		assertEquals(40.0f, produtoAlterado.getEstoque(), 0.0001);
 		
 	}

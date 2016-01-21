@@ -35,5 +35,9 @@ public class ClienteRN {
 		this.clienteDAO.alterar(cliente);
 		
 	}
+
+	public Cliente pesquisarPorCodigo(Integer codigo) {
+		return this.clienteDAO.pesquisarPorCodigo(codigo);
+	}
 	
 }

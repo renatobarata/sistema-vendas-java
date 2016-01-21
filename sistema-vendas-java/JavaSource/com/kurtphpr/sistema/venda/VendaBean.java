@@ -22,16 +22,18 @@ public class VendaBean {
 	private List<SelectItem> clientesSelect;
 	private float valorTotal;
 	
-	public void getBuscaProduto() {
+	public String buscarProduto() {
 		ProdutoRN produtoRN = new ProdutoRN();
 		Produto produtoPesquisado = new Produto();
-		if(this.produtoSelecionado.getDescricao() != null || this.produtoSelecionado.getDescricao().equals("")) {
-			produtoPesquisado = produtoRN.pesquisar(this.produtoSelecionado.getDescricao());
+		
+		if(this.produtoSelecionado.getDescricao() != null && !this.produtoSelecionado.getDescricao().equals("")) {
+			produtoPesquisado = produtoRN.pesquisarPorNome(this.produtoSelecionado.getDescricao());
 			if(produtoPesquisado != null) {
 				this.carrinhoCompras.add(produtoPesquisado);
 				calculaTotal();
 			}
 		}
+		return null;
 	}
 	
 	private void calculaTotal() {
@@ -42,6 +44,15 @@ public class VendaBean {
 		}
 	}
 
+	public String excluirProdutoCarrinho() {
+		if(this.carrinhoCompras != null && !this.carrinhoCompras.isEmpty()) {
+			if(this.produtoSelecionado != null) {
+				this.carrinhoCompras.remove(this.produtoSelecionado);
+			}
+		}
+		return null;
+	}
+	
 	public Cliente getClienteSelecionado() {
 		return clienteSelecionado;
 	}

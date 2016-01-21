@@ -13,5 +13,7 @@ public interface ClienteDAO {
 	public Cliente pesquisar(String string);
 
 	public void alterar(Cliente cliente);
+
+	public Cliente pesquisarPorCodigo(Integer codigo);
 	
 }
