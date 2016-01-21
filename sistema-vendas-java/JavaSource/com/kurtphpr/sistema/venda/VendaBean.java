@@ -1,6 +1,7 @@
 package com.kurtphpr.sistema.venda;
 
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 
 import javax.faces.bean.ManagedBean;
@@ -37,22 +38,41 @@ public class VendaBean {
 	}
 	
 	private void calculaTotal() {
-		if(this.carrinhoCompras.isEmpty()) {
-			for (Produto produto : this.carrinhoCompras) {
-				valorTotal =+ produto.getValor();
+		this.valorTotal = 0;
+		if(!this.carrinhoCompras.isEmpty()) {
+			for (Produto p : this.carrinhoCompras) {
+				valorTotal += p.getValor();
 			}
 		}
 	}
 
-	public String excluirProdutoCarrinho() {
-		if(this.carrinhoCompras != null && !this.carrinhoCompras.isEmpty()) {
-			if(this.produtoSelecionado != null) {
-				this.carrinhoCompras.remove(this.produtoSelecionado);
+	public String finalizarVenda() {
+		if(!this.carrinhoCompras.isEmpty()) {
+			ArrayList<Venda> vendas = new ArrayList<Venda>();
+			for (Produto p : this.carrinhoCompras) {
+				if(this.clienteSelecionado != null) {
+					vendas.add(new Venda(p, this.clienteSelecionado));
+				}
+			}
+			for (Venda venda : vendas) {
+				VendaRN vendaRN = new VendaRN();
+				venda.setDataVenda(new Date());
+				vendaRN.registraVenda(venda);
 			}
 		}
 		return null;
 	}
 	
+	public String excluirProdutoCarrinho() {
+		if(this.carrinhoCompras != null && !this.carrinhoCompras.isEmpty()) {
+			if(this.produtoSelecionado != null) {
+				this.carrinhoCompras.remove(this.produtoSelecionado);
+				calculaTotal();
+			}
+		}
+		return null;
+	}
+		
 	public Cliente getClienteSelecionado() {
 		return clienteSelecionado;
 	}

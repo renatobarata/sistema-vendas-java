@@ -24,7 +24,9 @@
 						<h:outputLabel value="Produto: " />
 						<h:panelGroup>
 							<h:inputText value="#{vendaBean.produtoSelecionado.descricao}" />
-							<h:commandButton action="#{vendaBean.buscarProduto()}" value="Pesquisar" />	
+							<h:commandButton action="#{vendaBean.buscarProduto()}" value="Pesquisar" >
+								<f:ajax onevent="click" render="idValorTotal" />
+							</h:commandButton>	
 						</h:panelGroup>
 						
 						<h:outputLabel value="ID Cliente: " />
@@ -47,6 +49,15 @@
 							</h:column>
 							
 						</h:dataTable>
+						
+						<h:panelGroup>
+							<h:outputLabel value="Subtotal: " />
+							<h:outputText id="idValorTotal" value="#{vendaBean.valorTotal}" >
+								<f:convertNumber currencyCode="BRL" type="currency" />
+							</h:outputText>
+						</h:panelGroup>
+						
+						<h:commandButton action="#{vendaBean.finalizarVenda()}" value="Finalizar Venda" />
 						
 					</h:panelGrid>
 				</h:form>
