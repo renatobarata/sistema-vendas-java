@@ -5,8 +5,10 @@ import java.util.List;
 
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.ViewScoped;
+import javax.faces.model.SelectItem;
 
 import com.kurtphpr.sistema.cliente.Cliente;
+import com.kurtphpr.sistema.cliente.ClienteRN;
 import com.kurtphpr.sistema.produto.Produto;
 import com.kurtphpr.sistema.produto.ProdutoRN;
 
@@ -17,6 +19,7 @@ public class VendaBean {
 	private Cliente clienteSelecionado;
 	private Produto produtoSelecionado = new Produto();
 	private List<Produto> carrinhoCompras = new ArrayList<Produto>();
+	private List<SelectItem> clientesSelect;
 	private float valorTotal;
 	
 	public void getBuscaProduto() {
@@ -70,6 +73,21 @@ public class VendaBean {
 	public void setValorTotal(float valorTotal) {
 		this.valorTotal = valorTotal;
 	}
+
+	public List<SelectItem> getClientesSelect() {
+		if(clientesSelect == null) {
+			clientesSelect = new ArrayList<SelectItem>();
+			ClienteRN clienteRN = new ClienteRN();
+			List<Cliente> listaClientes = clienteRN.listar();
+			if(listaClientes != null && !listaClientes.isEmpty()) {
+				SelectItem item;
+				for (Cliente clienteLista : listaClientes) {
+					item = new SelectItem(clienteLista, clienteLista.getNome());
+					clientesSelect.add(item);
+				}
+			}
+		}
+		return clientesSelect;
+	}
 		
-	
 }

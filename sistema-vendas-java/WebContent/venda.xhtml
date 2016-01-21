@@ -12,7 +12,15 @@
 			<ui:define name="pageTitle">Vendas</ui:define>
 			<ui:define name="pageHeader">Registro de Vendas</ui:define>
 			<ui:define name="body">
-				
+				<h:form>
+					<h:panelGrid columns="2">
+						<h:outputLabel value="Cliente: " />
+						<h:selectOneMenu value="#{vendaBean.clienteSelecionado}">
+							<f:selectItem itemLabel="Selecione um cliente"/>
+							<f:selectItems value="#{vendaBean.clientesSelect}"/>
+						</h:selectOneMenu>
+					</h:panelGrid>
+				</h:form>
 			</ui:define>
 	</ui:composition>
 
